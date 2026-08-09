@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paiement confirmé — DC Plaza</title>
+<style>
+body{margin:0;background:#050505;color:#f5f5f7;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",Inter,sans-serif;display:grid;place-items:center;min-height:100vh}
+.card{width:min(560px,88%);padding:44px;border:1px solid rgba(255,255,255,.12);border-radius:28px;background:rgba(255,255,255,.06);backdrop-filter:blur(25px);text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.4)}
+.icon{font-size:48px;margin-bottom:12px}.muted{color:#a1a1aa;line-height:1.6}
+.btn{display:inline-flex;margin-top:20px;background:#fff;color:#000;text-decoration:none;padding:14px 22px;border-radius:999px;font-weight:800}
+.small{margin-top:20px;font-size:12px;color:#71717a}
+</style></head>
+<body>
+<div class="card">
+<div class="icon">✓</div>
+<h1>Paiement confirmé</h1>
+<p class="muted">Merci pour votre achat. Votre ebook est maintenant disponible.</p>
+<a id="download" class="btn" href="#">Télécharger l’ebook →</a>
+<p class="small">Le téléchargement est autorisé uniquement après confirmation du paiement Stripe.</p>
+</div>
+<script>
+const id = new URLSearchParams(location.search).get("session_id");
+const link = document.getElementById("download");
+if (id) link.href = "/download-ebook?session_id=" + encodeURIComponent(id);
+else { link.removeAttribute("href"); link.textContent = "Session introuvable"; }
+</script>
+</body></html>
