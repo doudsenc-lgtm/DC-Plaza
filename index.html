@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Plaza Multiservice — De l’idée à l’entreprise</title>
+<meta name="description" content="Kreye Premye Antrepriz Ou. — Plan Biznis Estratejik ak Gid pou Kreye yon Biznis Dirab.">
+<style>
+:root{
+  --bg:#050505; --bg2:#0b0b0d; --card:rgba(255,255,255,.055);
+  --card2:rgba(255,255,255,.075); --ink:#f5f5f7; --muted:#a1a1aa;
+  --line:rgba(255,255,255,.12); --blue:#2997ff; --violet:#8b5cf6;
+  --green:#30d158; --radius:28px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",
+  Inter,Segoe UI,sans-serif;background:var(--bg);color:var(--ink);
+  line-height:1.5;overflow-x:hidden
+}
+body:before,body:after{content:"";position:fixed;border-radius:50%;filter:blur(100px);
+  pointer-events:none;z-index:-2;opacity:.22}
+body:before{width:420px;height:420px;background:#4f46e5;left:-180px;top:15%}
+body:after{width:500px;height:500px;background:#007aff;right:-230px;top:55%}
+a{text-decoration:none;color:inherit}
+.container{width:min(1160px,92%);margin:auto}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;letter-spacing:-.05em;font-size:20px}
+.logo span{color:#fff}
+.navlinks{display:flex;gap:28px;color:#a1a1aa;font-size:14px}
+.navlinks a{transition:.25s}.navlinks a:hover{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;
+  padding:13px 20px;font-weight:700;font-size:14px;border:1px solid transparent;
+  cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
+.btn-primary{background:#fff;color:#000;box-shadow:0 8px 30px rgba(255,255,255,.08)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(255,255,255,.15)}
+.btn-glass{background:rgba(255,255,255,.06);border-color:var(--line);backdrop-filter:blur(18px);color:#fff}
+.btn-glass:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.hero{padding:86px 0 105px;position:relative;text-align:center}
+.hero:before{content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 10%,rgba(41,151,255,.17),transparent 35%);
+  z-index:-1}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:center;text-align:left}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid var(--line);color:#d4d4d8;
+  font-size:12px;font-weight:800;margin-bottom:20px;backdrop-filter:blur(18px)}
+h1{font-size:clamp(44px,6vw,76px);line-height:1.01;letter-spacing:-.065em;max-width:760px}
+.gradient{background:linear-gradient(100deg,#fff 5%,#2997ff 48%,#8b5cf6 95%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:18px;color:var(--muted);max-width:620px;margin:24px 0 30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.trust{display:flex;gap:22px;margin-top:28px;color:#71717a;font-size:12px;flex-wrap:wrap}
+.book-wrap{position:relative;display:flex;justify-content:center;perspective:1000px}
+.book{width:310px;min-height:420px;background:linear-gradient(145deg,#18181b,#08080a);
+  border:1px solid rgba(255,255,255,.15);border-radius:8px 24px 24px 8px;
+  box-shadow:24px 35px 80px rgba(0,0,0,.65),inset 0 0 35px rgba(255,255,255,.025);
+  padding:38px 30px;color:white;transform:rotateY(-8deg) rotate(2deg);
+  position:relative;overflow:hidden;transition:transform .6s}
+.book-wrap:hover .book{transform:rotateY(0) rotate(0) translateY(-8px)}
+.book:after{content:"";position:absolute;width:280px;height:280px;right:-130px;bottom:-140px;
+  background:#2997ff;border-radius:50%;filter:blur(5px);opacity:.25}
+.book small{font-weight:800;letter-spacing:.13em;color:#b5b5bb}
+.book h2{font-size:35px;line-height:1.05;letter-spacing:-.04em;margin:38px 0 22px}
+.book .author{position:absolute;bottom:30px;font-weight:700}
+.floating{position:absolute;background:rgba(20,20,22,.62);border:1px solid var(--line);
+  box-shadow:0 20px 45px rgba(0,0,0,.35);border-radius:16px;padding:12px 15px;
+  font-size:12px;font-weight:800;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.f1{right:-20px;top:38px}.f2{left:-35px;bottom:55px}
+.section{padding:105px 0}
+.section-head{text-align:center;max-width:720px;margin:0 auto 48px}
+.eyebrow{color:#64b5ff;font-size:12px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+h2{font-size:clamp(32px,4vw,50px);letter-spacing:-.05em;line-height:1.08}
+.section-head p{color:var(--muted);margin-top:15px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+  border:1px solid var(--line);border-radius:var(--radius);padding:28px;
+  box-shadow:0 20px 70px rgba(0,0,0,.22);backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);transition:transform .3s,border-color .3s,background .3s}
+.card:hover{transform:translateY(-7px);border-color:rgba(255,255,255,.22);background:var(--card2)}
+.icon{width:44px;height:44px;border-radius:14px;background:rgba(41,151,255,.12);
+  color:#64b5ff;display:grid;place-items:center;font-weight:900;margin-bottom:18px}
+.card h3{font-size:19px;margin-bottom:8px}.card p{font-size:14px;color:var(--muted)}
+.learning{background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.035));
+  border:1px solid var(--line);border-radius:34px;color:#fff;padding:58px;
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);box-shadow:0 30px 100px rgba(0,0,0,.3)}
+.learning .section-head{margin-left:0;text-align:left}.learning .section-head p{color:#a1a1aa}
+.modules{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.module{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);
+  border-radius:18px;padding:18px;display:flex;gap:15px;align-items:flex-start;
+  transition:.3s}.module:hover{background:rgba(255,255,255,.08);transform:translateY(-3px)}
+.num{width:34px;height:34px;border-radius:10px;background:#fff;color:#000;display:grid;
+  place-items:center;font-weight:900;flex:none}.module h4{margin-bottom:4px}.module p{font-size:13px;color:#a1a1aa}
+.offer{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.price-card{position:relative;overflow:hidden}
+.price-card.featured{border-color:rgba(41,151,255,.55);box-shadow:0 20px 80px rgba(41,151,255,.12)}
+.popular{position:absolute;right:18px;top:18px;background:#fff;color:#000;border-radius:999px;
+  padding:6px 9px;font-size:10px;font-weight:900}
+.price{font-size:48px;font-weight:900;letter-spacing:-.06em;margin:12px 0}
+.price small{font-size:14px;color:#71717a;font-weight:600}
+.price-card ul{list-style:none;margin:20px 0 28px;display:grid;gap:12px;color:#a1a1aa;font-size:14px}
+.price-card li:before{content:"✓";color:var(--green);font-weight:900;margin-right:10px}
+.newsletter{display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:center;
+  padding:45px;border:1px solid var(--line);border-radius:30px;
+  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+  backdrop-filter:blur(25px)}
+.newsletter h3{font-size:32px;letter-spacing:-.04em}.newsletter p{color:var(--muted);margin-top:9px}
+.news-form{display:flex;gap:10px}.news-form input{flex:1;min-width:0;background:rgba(0,0,0,.3);
+  border:1px solid var(--line);border-radius:999px;padding:14px 17px;color:#fff;outline:none}
+.news-form input:focus{border-color:#64b5ff}
+.cta{background:linear-gradient(135deg,#17171a,#0b0b0d);border:1px solid var(--line);
+  color:#fff;border-radius:34px;padding:58px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.35)}
+.cta p{color:#a1a1aa;margin:13px auto 24px;max-width:600px}
+footer{padding:35px 0;border-top:1px solid var(--line);color:#71717a;font-size:13px}
+.footer-row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:900px){
+ .navlinks{display:none}.hero{padding:58px 0 75px}.hero-grid{grid-template-columns:1fr;gap:50px}
+ .hero-grid>div:first-child{text-align:center}.hero p{margin-left:auto;margin-right:auto}
+ .actions,.trust{justify-content:center}.book{width:285px;min-height:390px}
+ .grid3,.offer{grid-template-columns:1fr}.learning{padding:34px}.modules{grid-template-columns:1fr}
+ .newsletter{grid-template-columns:1fr;padding:32px}
+}
+@media(max-width:520px){
+ .container{width:min(94%,420px)}nav{height:66px}
+ h1{font-size:45px}.hero p{font-size:16px}.section{padding:72px 0}
+ .book{width:250px;min-height:350px;padding:30px 24px}.book h2{font-size:29px;margin:30px 0 18px}
+ .f1{right:-8px;top:25px}.f2{left:-8px;bottom:25px}
+ .learning,.cta{border-radius:24px;padding:25px}.newsletter{border-radius:24px}
+ .news-form{flex-direction:column}.news-form .btn{width:100%}
+ .price{font-size:43px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo" href="/create-checkout-session">DC <span>PLAZA</span></a>
+      <div class="navlinks">
+        <a href="#ebook">Ebook</a><a href="#contenu">Contenu</a><a href="#formation">Formation</a><a href="#offre">Offre</a>
+      </div>
+      <a class="btn btn-primary" href="#offre">Commencer</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero reveal">
+  <div class="container hero-grid">
+    <div>
+      <div class="badge">✦ DE L’IDÉE À L’ENTREPRISE</div>
+      <h1>Créez votre <span class="gradient">première entreprise</span> étape par étape.</h1>
+      <p>Un guide pratique pour structurer votre entreprise, comprendre les étapes clés et passer de l’idée à l’action.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#offre">Accéder à l’ebook →</a>
+        <a class="btn btn-light" href="#formation">Voir la formation</a>
+      </div>
+      <div class="trust">
+        <span>✓ Création d’entreprise</span><span>✓ Financement & crédit</span><span>✓ Plan financier</span>
+      </div>
+    </div>
+    <div class="book-wrap">
+      <div class="book">
+        <small>DOUDSEN CIVIL</small>
+        <h2>Kreye Premye Antrepriz Ou.</h2>
+        <div>Yon antrepriz konplè,<br>ou sèlman gen pou<br>aplike e respekte etap yo.</div>
+        <div class="author">Doudsen CIVIL</div>
+      </div>
+      <div class="floating f1">2e édition · Révisée</div>
+      <div class="floating f2">Business • Stratégie • Finance</div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="ebook">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">L’ebook</div>
+      <h2>Tout commence par une idée. Mais une idée a besoin d’un plan.</h2>
+      <p>Un guide étape par étape pour créer une entreprise, structurer ses opérations, préparer ses finances et travailler sur sa croissance.</p>
+    </div>
+    <div class="grid3" id="contenu">
+      <div class="card reveal"><div class="icon">01</div><h3>Clarifier le projet</h3><p>Travaillez sur l’origine de l’idée, la mission, la vision, les valeurs et les objectifs.</p></div>
+      <div class="card reveal"><div class="icon">02</div><h3>Construire la stratégie</h3><p>Explorez le marketing, l’analyse FFOM, les ressources humaines et la structure du projet.</p></div>
+      <div class="card reveal"><div class="icon">03</div><h3>Planifier les finances</h3><p>Organisez les dépenses, le plan financier et le calendrier des activités.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="formation">
+  <div class="container">
+    <div class="learning">
+      <div class="section-head">
+        <div class="eyebrow">Section formation</div>
+        <h2>Ne vous contentez pas de lire. Passez à l’action.</h2>
+        <p>Une expérience de formation peut accompagner la lecture du guide, étape par étape, pour transformer les concepts en actions concrètes.</p>
+      </div>
+      <div class="modules">
+        <div class="module reveal"><div class="num">1</div><div><h4>De l’idée au projet</h4><p>Clarifier l’idée, le contexte et les objectifs.</p></div></div>
+        <div class="module reveal"><div class="num">2</div><div><h4>Mission, vision & valeurs</h4><p>Donner une direction claire au projet.</p></div></div>
+        <div class="module reveal"><div class="num">3</div><div><h4>Marketing & FFOM</h4><p>Structurer l’analyse stratégique du projet.</p></div></div>
+        <div class="module reveal"><div class="num">4</div><div><h4>Finances & dépenses</h4><p>Construire une base financière cohérente.</p></div></div>
+        <div class="module reveal"><div class="num">5</div><div><h4>Ressources & organisation</h4><p>Réfléchir aux ressources humaines nécessaires.</p></div></div>
+        <div class="module reveal"><div class="num">6</div><div><h4>Plan d’action</h4><p>Passer de la stratégie au calendrier d’activités.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="offre">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Choisissez votre parcours</div>
+      <h2>Commencez avec le guide. Allez plus loin avec la formation.</h2>
+    </div>
+    <div class="offer">
+      <div class="card price-card reveal">
+        <div class="eyebrow">Starter</div><h3>Ebook</h3>
+        <div class="price">$XX <small>/ une fois</small></div>
+        <p>Le guide numérique pour créer et structurer votre entreprise.</p>
+        <ul><li>Création & stratégie</li><li>Marketing & analyse FFOM</li><li>Structure des coûts</li><li>Plan financier</li><li>Calendrier d’actions</li><li>30 min de coaching après achat</li></ul>
+        <a class="btn btn-glass" style="width:100%" href="#formation">Acheter l’ebook</a>
+      </div>
+      <div class="card price-card featured reveal">
+        <span class="popular">LE PLUS POPULAIRE</span>
+        <div class="eyebrow">Pro</div><h3>Ebook + Formation</h3>
+        <div class="price">$XX <small>/ une fois</small></div>
+        <p>Ebook + Coaching pour passer à l’action.</p>
+        <ul><li>Tout le contenu de l’ebook</li><li>6 modules de formation</li><li>Exercices pratiques</li><li>Plan d’action personnel</li><li>Progression étape par étape</li></ul>
+        <a class="btn btn-primary" style="width:100%" href="#contact">Commencer la formation</a>
+      </div>
+      <div class="card price-card reveal">
+        <div class="eyebrow">Premium</div><h3>Accompagnement</h3>
+        <div class="price">$XX <small>/ une fois</small></div>
+        <p>Pour aller plus loin avec un accompagnement personnalisé.</p>
+        <ul><li>Ebook + formation</li><li>Exercices pratiques</li><li>Plan d’action</li><li>Session de coaching</li><li>Coaching de 30 minutes</li></ul>
+        <a class="btn btn-glass" style="width:100%" href="#">Choisir Premium</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section reveal">
+  <div class="container">
+    <div class="newsletter">
+      <div>
+        <div class="eyebrow">Newsletter DC Plaza</div>
+        <h3>Des idées utiles. Directement dans votre boîte mail.</h3>
+        <p>Recevez des conseils, ressources et contenus autour de l’entrepreneuriat et du passage de l’idée à l’action.</p>
+      </div>
+      <form class="news-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Merci ✓';">
+        <input type="email" placeholder="Votre adresse email" aria-label="Votre adresse email" required>
+        <button class="btn btn-primary" type="submit">S’inscrire</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="cta">
+      <div class="eyebrow" style="color:#d9d7ff">DC PLAZA MULTISERVICE</div>
+      <h2>Votre prochaine entreprise peut commencer aujourd’hui.</h2>
+      <p>Une idée devient plus forte lorsqu’elle est structurée. Utilisez le guide comme point de départ et transformez votre réflexion en plan d’action.</p>
+      <a class="btn" style="background:#fff;color:#5148d8" href="#offre">Commencer maintenant →</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <span>© Doudsen CIVIL · DC Plaza Multiservice</span>
+    <span>© Tous droits réservés</span>
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".reveal");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: .12});
+  items.forEach((el, i) => {
+    el.style.transitionDelay = Math.min(i * 45, 280) + "ms";
+    observer.observe(el);
+  });
+
+  const book = document.querySelector(".book");
+  if (book && window.matchMedia("(pointer:fine)").matches) {
+    document.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - .5) * 5;
+      const y = (e.clientY / window.innerHeight - .5) * -4;
+      book.style.transform = `rotateY(${-8 + x}deg) rotate(${2 + y/2}deg)`;
+    });
+  }
+});
+</script>
+
+</body>
+</html>
