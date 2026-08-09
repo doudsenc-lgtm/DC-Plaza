@@ -30,6 +30,10 @@ app.get("/create-checkout-session", async (req, res) => {
       metadata: { product: "dc_plaza_ebook" }
     });
 
+    if (req.query.format === "json") {
+      return res.json({ url: session.url });
+    }
+
     res.redirect(303, session.url);
   } catch (error) {
     console.error(error);
