@@ -40,7 +40,7 @@ Configurez ces variables dans l’environnement **Production** du projet Vercel 
 - `PUBLIC_BASE_URL`
 - `STRIPE_WEBHOOK_SECRET`
 - `RESEND_API_KEY`
-- `RESEND_FROM_EMAIL` (une adresse d’expéditeur vérifiée dans Resend)
+- `EMAIL_FROM` (une adresse d’expéditeur vérifiée dans Resend)
 
 Dans Stripe, ajoutez le point de terminaison `https://<votre-domaine>/stripe-webhook`, sélectionnez l’événement `checkout.session.completed`, puis copiez son secret de signature dans `STRIPE_WEBHOOK_SECRET`.
 

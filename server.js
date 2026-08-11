@@ -9,7 +9,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const EBOOK_PATH = path.join(__dirname, "ebook.pdf");
 
 async function sendEbookEmail({ customerEmail, eventId }) {
-  if (!process.env.RESEND_API_KEY || !process.env.RESEND_FROM_EMAIL) {
+  if (!process.env.RESEND_API_KEY || !process.env.EMAIL_FROM) {
     throw new Error("Resend email configuration is missing");
   }
   if (!fs.existsSync(EBOOK_PATH)) {
@@ -24,7 +24,7 @@ async function sendEbookEmail({ customerEmail, eventId }) {
       "Idempotency-Key": `stripe-checkout-${eventId}`
     },
     body: JSON.stringify({
-      from: process.env.RESEND_FROM_EMAIL,
+      from: process.env.EMAIL_FROM,
       to: [customerEmail],
       subject: "Votre ebook — Kreye Premye Antrepriz Ou",
       text: "Merci pour votre achat. Votre ebook Kreye Premye Antrepriz Ou est joint à cet email.",
@@ -90,7 +90,7 @@ app.use(express.static(path.join(__dirname, "public")));
  * PUBLIC_BASE_URL=https://your-domain.com
  * STRIPE_WEBHOOK_SECRET=whsec_...
  * RESEND_API_KEY=re_...
- * RESEND_FROM_EMAIL=ebooks@your-verified-domain.com
+ * EMAIL_FROM=ebooks@your-verified-domain.com
  */
 app.get("/create-checkout-session", async (req, res) => {
   try {
