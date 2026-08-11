@@ -6,6 +6,78 @@ const Stripe = require("stripe");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const EBOOK_PATH = path.join(__dirname, "ebook.pdf");
+
+async function sendEbookEmail({ customerEmail, eventId }) {
+  if (!process.env.RESEND_API_KEY || !process.env.EMAIL_FROM) {
+    throw new Error("Resend email configuration is missing");
+  }
+  if (!fs.existsSync(EBOOK_PATH)) {
+    throw new Error("Ebook file is unavailable");
+  }
+
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      "Content-Type": "application/json",
+      "Idempotency-Key": `stripe-checkout-${eventId}`
+    },
+    body: JSON.stringify({
+      from: process.env.EMAIL_FROM,
+      to: [customerEmail],
+      subject: "Votre ebook — Kreye Premye Antrepriz Ou",
+      text: "Merci pour votre achat. Votre ebook Kreye Premye Antrepriz Ou est joint à cet email.",
+      attachments: [{
+        filename: "ebook.pdf",
+        content: fs.readFileSync(EBOOK_PATH).toString("base64")
+      }]
+    })
+  });
+
+  if (!response.ok) {
+    throw new Error(`Resend delivery failed: ${response.status}`);
+  }
+}
+
+app.post("/stripe-webhook", express.raw({ type: "application/json" }), async (req, res) => {
+  const signature = req.headers["stripe-signature"];
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(
+      req.body,
+      signature,
+      process.env.STRIPE_WEBHOOK_SECRET
+    );
+  } catch (error) {
+    console.error("Stripe webhook signature verification failed", error.message);
+    return res.status(400).send("Invalid webhook signature");
+  }
+
+  if (event.type !== "checkout.session.completed") {
+    return res.sendStatus(200);
+  }
+
+  const session = event.data.object;
+  if (session.payment_status !== "paid" || session.metadata?.product !== "dc_plaza_ebook") {
+    return res.sendStatus(200);
+  }
+
+  const customerEmail = session.customer_details?.email || session.customer_email;
+  if (!customerEmail) {
+    console.error("Paid ebook checkout session has no customer email", session.id);
+    return res.status(500).send("Customer email is missing");
+  }
+
+  try {
+    await sendEbookEmail({ customerEmail, eventId: event.id });
+    return res.sendStatus(200);
+  } catch (error) {
+    console.error("Ebook email delivery failed", error);
+    return res.status(500).send("Ebook delivery failed");
+  }
+});
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -16,6 +88,9 @@ app.use(express.static(path.join(__dirname, "public")));
  * STRIPE_SECRET_KEY=sk_live_...
  * STRIPE_PRICE_ID=price_...
  * PUBLIC_BASE_URL=https://your-domain.com
+ * STRIPE_WEBHOOK_SECRET=whsec_...
+ * RESEND_API_KEY=re_...
+ * EMAIL_FROM=ebooks@your-verified-domain.com
  */
 app.get("/create-checkout-session", async (req, res) => {
   try {
@@ -55,10 +130,9 @@ app.get("/download-ebook", async (req, res) => {
       return res.status(403).send("Paiement non confirmé.");
     }
 
-    const file = path.join(__dirname, "ebook.pdf");
-    if (!fs.existsSync(file)) return res.status(404).send("Fichier indisponible.");
+    if (!fs.existsSync(EBOOK_PATH)) return res.status(404).send("Fichier indisponible.");
 
-    res.download(file, "DC_PLAZA_Ebook.pdf");
+    res.download(EBOOK_PATH, "DC_PLAZA_Ebook.pdf");
   } catch (error) {
     console.error(error);
     res.status(400).send("Lien de téléchargement invalide ou expiré.");

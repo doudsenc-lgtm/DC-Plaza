@@ -28,3 +28,20 @@
 
 ## Important
 Le PDF inclus est le fichier fourni dans la conversation. Il est identifié dans son contenu comme un premier bouillon éditorial et non comme la version finale. Vérifie donc que c’est bien le fichier que tu veux vendre avant de passer en production.
+
+## Livraison automatique de l’ebook
+
+La route `POST /stripe-webhook` livre l’ebook uniquement pour l’événement Stripe `checkout.session.completed` dont le paiement est confirmé et dont le produit est `dc_plaza_ebook`.
+
+Configurez ces variables dans l’environnement **Production** du projet Vercel :
+
+- `STRIPE_SECRET_KEY`
+- `STRIPE_PRICE_ID`
+- `PUBLIC_BASE_URL`
+- `STRIPE_WEBHOOK_SECRET`
+- `RESEND_API_KEY`
+- `EMAIL_FROM` (une adresse d’expéditeur vérifiée dans Resend)
+
+Dans Stripe, ajoutez le point de terminaison `https://<votre-domaine>/stripe-webhook`, sélectionnez l’événement `checkout.session.completed`, puis copiez son secret de signature dans `STRIPE_WEBHOOK_SECRET`.
+
+La requête webhook est vérifiée avec le secret Stripe avant tout envoi. L’appel Resend utilise l’identifiant de l’événement Stripe comme clé d’idempotence, afin que les nouvelles tentatives du même événement ne génèrent pas de second email. Pour tester en production, effectuez un paiement Stripe en mode test et vérifiez qu’un seul email avec `ebook.pdf` joint arrive à l’adresse du client.
