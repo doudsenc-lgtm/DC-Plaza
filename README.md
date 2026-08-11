@@ -1,4 +1,4 @@
-# DC Plaza — Stripe Ebook Store
+# DC PLAZA — Stripe Ebook Store
 
 ## Ce qui est inclus
 - `public/index.html` — landing page dark/glassmorphism.

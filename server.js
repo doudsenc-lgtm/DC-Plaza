@@ -58,7 +58,7 @@ app.get("/download-ebook", async (req, res) => {
     const file = path.join(__dirname, "ebook.pdf");
     if (!fs.existsSync(file)) return res.status(404).send("Fichier indisponible.");
 
-    res.download(file, "DC_Plaza_Multiservice_Ebook.pdf");
+    res.download(file, "DC_PLAZA_Ebook.pdf");
   } catch (error) {
     console.error(error);
     res.status(400).send("Lien de téléchargement invalide ou expiré.");
@@ -66,5 +66,5 @@ app.get("/download-ebook", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`DC Plaza store running on port ${PORT}`);
+  console.log(`DC PLAZA store running on port ${PORT}`);
 });
