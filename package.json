@@ -4,8 +4,11 @@
   "private": true,
   "description": "Landing page + Stripe Checkout + protected ebook download",
   "main": "server.js",
-  "scripts": { "start": "node server.js" },
+  "scripts": {
+    "start": "node server.js"
+  },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "express": "^5.1.0",
     "stripe": "^18.5.0"
   }
